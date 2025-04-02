@@ -36,7 +36,7 @@ const Footer = () => {
             <a href="https://github.com/manojkumar2291" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 text-2xl">
               <FaGithub />
             </a>
-            <a href="https://" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 text-2xl">
+            <a href="https://portfolio-self-five-94.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400 text-2xl">
               <FaGlobe />
             </a>
           </div>
