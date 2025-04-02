@@ -1,0 +1,23 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+@import "tailwindcss";
+
+
+@layer utilities {
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+  
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+  
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+  
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+  }
+  
+  
