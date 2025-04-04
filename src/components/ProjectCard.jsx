@@ -26,18 +26,30 @@ const ProjectCard = ({ index, name, description, techStack, source_code_link, li
         </div>
 
         {/* Action Buttons (GitHub & Live Demo) */}
-        <div className="absolute top-4 right-4 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {source_code_link && (
-            <a href={source_code_link} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition-all">
-              <FaGithub className="text-white text-lg" />
-            </a>
-          )}
-          {live_demo_link && (
-            <a href={live_demo_link} target="_blank" rel="noopener noreferrer" className="p-2 bg-yellow-500 rounded-full hover:bg-yellow-400 transition-all">
-              <FaExternalLinkAlt className="text-white text-lg" />
-            </a>
-          )}
-        </div>
+        <div className="absolute top-4 right-4 flex gap-3 
+  opacity-100 sm:opacity-0 sm:group-hover:opacity-100 
+  transition-opacity duration-300">
+  {source_code_link && (
+    <a
+      href={source_code_link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 bg-gray-800 rounded-full hover:bg-gray-700 transition-all"
+    >
+      <FaGithub className="text-white text-lg" />
+    </a>
+  )}
+  {live_demo_link && (
+    <a
+      href={live_demo_link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 bg-yellow-500 rounded-full hover:bg-yellow-400 transition-all"
+    >
+      <FaExternalLinkAlt className="text-white text-lg" />
+    </a>
+  )}
+</div>
       </div>
 
       {/* Description & Tech Stack */}
