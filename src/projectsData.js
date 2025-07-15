@@ -54,5 +54,14 @@ export const projects = [
     image: mail,  // Add the image
     source_code_link: "https://github.com/manojkumar2291/Mail-System",
     live_demo_link: "https://github.com/manojkumar2291/Mail-System",
-  },
+  },{
+  id: '6',
+  name: "Diagnostic Lab Booking Platform (freelance)",
+  description: "A full-stack medical diagnostic platform developed for a real client. Features include test booking, report upload/download, lab staff management, and offer handling. Built using a microservices architecture with secure OTP login, JWT-based role access, and Razorpay payment integration.",
+  techStack: ["React.js", "Node.js", "MySQL", "Express.js", "JWT", "Msg91", "Razorpay"],
+  image: "",  // Replace with your actual image reference
+  source_code_link: "",  // Update if public
+  live_demo_link: "",  // Replace with real deployed URL if available
+}
+
 ];
