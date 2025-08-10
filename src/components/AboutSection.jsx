@@ -1,4 +1,3 @@
-import React from "react";
 import manoj from '../assets/manoj.jpg'
 
 const AboutSection = () => {
@@ -25,7 +24,7 @@ const AboutSection = () => {
               seamless user experiences. 
             </p>
             <p className="mt-4 text-lg text-gray-300 leading-relaxed">
-              Whether it's front-end development with React and Tailwind CSS or back-end work using Node.js and FastAPI, 
+              Whether it&apos;s front-end development with React and Tailwind CSS or back-end work using Node.js and FastAPI,
               I thrive on the challenge of creating scalable and efficient applications. My goal is to continuously learn, 
               adapt, and contribute to impactful projects.
             </p>

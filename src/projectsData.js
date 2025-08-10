@@ -1,6 +1,5 @@
 // src/projectsData.js
 
-import manoj from './assets/manoj.jpg'; 
 import ecommerce from './assets/projects/ecommerce.jpeg'
 import interest from './assets/projects/interest.jpeg'
 import mail from './assets/projects/mail.jpeg'
@@ -8,7 +7,7 @@ import weather from './assets/projects/weather.png'
 import todo from './assets/projects/todo.jpeg' 
 import lab from './assets/projects/labbooking.png'
 
-export const projects = [
+export const personalProjects = [
   
   {
     id: '1',
@@ -23,7 +22,7 @@ export const projects = [
     id: '2',
     name: "Interest Calculator",
     description: "I developed a Simple & Compound Interest Calculator web app to help users instantly calculate interest with a detailed breakdown for each year, month, and day. The app provides a clean, responsive UI and allows users to download the calculation as a PDF for future reference.",
-    techStack: [, "Reactc.js","Tailwind.css","vite","jsPDF"],
+    techStack: ["React.js","Tailwind.css","vite","jsPDF"],
     image: interest,  // Add the image
     source_code_link: "https://github.com/manojkumar2291/interest_calculator",
     live_demo_link: "https://interest-calculator-ecru.vercel.app",
@@ -55,14 +54,15 @@ export const projects = [
     image: mail,  // Add the image
     source_code_link: "https://github.com/manojkumar2291/Mail-System",
     live_demo_link: "https://github.com/manojkumar2291/Mail-System",
-  },{
+  }
+];
+
+export const freelanceProjects = [{
   id: '6',
-  name: "Diagnostic Lab Booking Platform (freelance)",
+  name: "Diagnostic Lab Booking Platform",
   description: "A full-stack medical diagnostic platform developed for a real client. Features include test booking, report upload/download, lab staff management, and offer handling. Built using a microservices architecture with secure OTP login, JWT-based role access, and Razorpay payment integration.",
   techStack: ["React.js", "Node.js", "MySQL", "Express.js", "JWT", "Msg91", "Razorpay"],
   image: lab,  // Replace with your actual image reference
   source_code_link: "",  // Update if public
   live_demo_link: "",  // Replace with real deployed URL if available
-}
-
-];
+}];

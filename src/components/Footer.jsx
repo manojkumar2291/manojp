@@ -1,4 +1,3 @@
-import React from "react";
 import { FaLinkedin, FaGithub, FaGlobe } from "react-icons/fa";
 
 const Footer = () => {
@@ -8,7 +7,7 @@ const Footer = () => {
         
         {/* Section 1: Logo & Description */}
         <div>
-          <h2 className="text-xl font-semibold text-yellow-400">Manoj's Portfolio</h2>
+          <h2 className="text-xl font-semibold text-yellow-400">Manoj&apos;s Portfolio</h2>
           <p className="mt-2 text-gray-400">
             Passionate developer crafting seamless digital experiences.
           </p>
