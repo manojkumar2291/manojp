@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import emailjs from "emailjs-com";
 import download from "../assets/download.jpeg";
 
@@ -126,10 +126,10 @@ const ContactSection = () => {
         <div className="w-full md:w-1/2 p-6 flex flex-col justify-center items-center bg-blue-100 rounded-lg shadow-xl hover:shadow-2xl transition-all ease-in-out duration-300">
           <div className="text-center">
             <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-              "Let’s create something amazing together!"
+              &quot;Let’s create something amazing together!&quot;
             </h3>
             <p className="text-lg text-gray-700 mb-4">
-              We are always open to new ideas and collaborations. Reach out, and let's make magic happen.
+              We are always open to new ideas and collaborations. Reach out, and let&apos;s make magic happen.
             </p>
           </div>
 

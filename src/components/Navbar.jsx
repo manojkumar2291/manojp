@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="text-xl font-semibold">
           <h2>
             <a href="/" className="hover:text-yellow-400 transition-colors">
-              Manoj's Portfolio
+              Manoj&apos;s Portfolio
             </a>
           </h2>
         </div>

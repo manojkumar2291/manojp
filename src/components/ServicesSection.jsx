@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FaLaptopCode, FaPaintBrush, FaPalette } from "react-icons/fa";
 

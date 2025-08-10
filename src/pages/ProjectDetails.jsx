@@ -1,5 +1,4 @@
 // src/pages/ProjectDetails.jsx
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { projects } from '../projectsData';  // Import the projects array
 

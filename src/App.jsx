@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";  // Import Routes and Route
 
 import Navbar from './components/Navbar';
@@ -6,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectSection from './components/ProjectSection';
+import FreelanceSection from './components/FreelanceSection';
 import Footer from './components/Footer';
 import ContactSection from './components/ContactSection';
 import ServicesSection from "./components/ServicesSection";
@@ -34,6 +34,9 @@ const App = () => {
 
               <ProjectSection />
               <SectionDivider section="projects" />
+
+              <FreelanceSection />
+              <SectionDivider section="freelance" />
 
               <ContactSection />
               <SectionDivider section="contact" />

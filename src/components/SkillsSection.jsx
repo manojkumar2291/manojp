@@ -1,7 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 
-import { FaReact, FaNodeJs, FaPython, FaJava, FaDatabase, FaCss3Alt, FaHtml5, FaGitAlt } from "react-icons/fa";
+import { FaReact, FaNodeJs, FaJava, FaDatabase, FaHtml5, FaGitAlt } from "react-icons/fa";
 import { SiTailwindcss, SiMongodb, SiFirebase, SiFastapi, SiNextdotjs, SiJavascript, SiExpress, SiVercel, SiFlask } from "react-icons/si";
 
 // Skill list with names, icons, and links

@@ -1,5 +1,5 @@
-import React from "react";
 import { FaHome, FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaLaptopCode} from "react-icons/fa"; // Import icons
+import PropTypes from 'prop-types';
 
 const SectionDivider = ({ section }) => {
   // Define icons for different sections
@@ -19,6 +19,10 @@ const SectionDivider = ({ section }) => {
       <div className="flex-grow h-px bg-yellow-400"></div>
     </div>
   );
+};
+
+SectionDivider.propTypes = {
+  section: PropTypes.string.isRequired,
 };
 
 export default SectionDivider;
