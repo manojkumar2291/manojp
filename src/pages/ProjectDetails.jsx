@@ -1,6 +1,6 @@
 // src/pages/ProjectDetails.jsx
 import { useParams } from 'react-router-dom';
-import personalProjects  from '../projectsData';  // Import the projects array
+import {personalProjects } from '../projectsData';  // Import the projects array
 
 const ProjectDetails = () => {
   const { id } = useParams();  // Get the project ID from the URL
