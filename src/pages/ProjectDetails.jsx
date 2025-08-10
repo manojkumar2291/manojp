@@ -1,10 +1,11 @@
 // src/pages/ProjectDetails.jsx
 import { useParams } from 'react-router-dom';
-import { projects } from '../projectsData';  // Import the projects array
+import { personalProjects, freelanceProjects } from '../projectsData';  // Import the projects array
 
 const ProjectDetails = () => {
   const { id } = useParams();  // Get the project ID from the URL
-  const project = projects.find((project) => project.id === id);  // Find the project using the id
+  const allProjects = [...personalProjects, ...freelanceProjects];
+  const project = allProjects.find((project) => project.id === id);  // Find the project using the id
 
   if (!project) {
     return <p className="text-white">Project not found!</p>;  // Handle case when project is not found

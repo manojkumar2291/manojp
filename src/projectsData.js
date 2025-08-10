@@ -7,7 +7,7 @@ import weather from './assets/projects/weather.png'
 import todo from './assets/projects/todo.jpeg' 
 import lab from './assets/projects/labbooking.png'
 
-export const Projects = [
+export const personalProjects = [
   
   {
     id: '1',
