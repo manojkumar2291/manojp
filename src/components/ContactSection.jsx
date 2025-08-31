@@ -1,6 +1,5 @@
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import download from "../assets/download.jpeg";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -51,97 +50,74 @@ const ContactSection = () => {
 
   return (
     <section className="bg-gray-900 py-16 px-6 md:px-12" id="contact">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-        {/* Contact Form */}
-        <div className="w-full md:w-1/2 p-6 bg-white shadow-xl rounded-lg hover:shadow-2xl transition-all ease-in-out duration-300">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Us</h2>
-          <p className="text-gray-600 mb-8">
-            We’d love to hear from you! Fill out the form below to get in touch with us.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-lg text-gray-700">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-lg text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-lg text-gray-700">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your Message"
-                rows="5"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className={`w-full py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-300 transform hover:scale-105 ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
-          </form>
-
-          {successMessage && <p className="mt-4 text-center text-green-600">{successMessage}</p>}
-        </div>
-
-        {/* Right Side: Text & Image */}
-        <div className="w-full md:w-1/2 p-6 flex flex-col justify-center items-center bg-blue-100 rounded-lg shadow-xl hover:shadow-2xl transition-all ease-in-out duration-300">
-          <div className="text-center">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-              &quot;Let’s create something amazing together!&quot;
-            </h3>
-            <p className="text-lg text-gray-700 mb-4">
-              We are always open to new ideas and collaborations. Reach out, and let&apos;s make magic happen.
-            </p>
-          </div>
-
-          {/* Image */}
-          <div className="mt-6">
-            <img
-              src={download}
-              alt="Collaborative Work"
-              className="w-72 h-72 object-cover rounded-lg shadow-lg hover:scale-105 transition-all duration-300"
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-4xl font-bold text-cyan-400 mb-4">Contact Me</h2>
+        <p className="text-gray-400 mb-8">
+          Have a project in mind or just want to say hi? Feel free to reach out.
+        </p>
+      </div>
+      <div className="max-w-xl mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="sr-only">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full p-4 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+              placeholder="Your Name"
+              required
             />
           </div>
-        </div>
+
+          <div>
+            <label htmlFor="email" className="sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full p-4 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="sr-only">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full p-4 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white"
+              placeholder="Your Message"
+              rows="5"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={`w-full py-3 text-white bg-cyan-600 hover:bg-cyan-700 rounded-md transition duration-300 transform hover:scale-105 ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+
+        {successMessage && <p className="mt-4 text-center text-green-500">{successMessage}</p>}
       </div>
     </section>
   );
