@@ -31,7 +31,7 @@ const ServicesSection = () => {
       <div className="container mx-auto px-6 md:px-12">
         {/* Title */}
         <h2
-          className="text-4xl font-bold text-blue-600 text-center"
+          className="text-3xl sm:text-4xl font-bold text-green-600 text-center"
         >
           My Services
         </h2>
@@ -47,7 +47,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white bg-opacity-40 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-slate-300 hover:border-blue-600 transition-all duration-300 transform hover:scale-105 flex flex-col items-center text-center"
+              className="bg-white bg-opacity-40 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-slate-300 hover:border-green-600 transition-all duration-300 transform hover:scale-105 flex flex-col items-center text-center"
             >
               <div className="mb-4">{service.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800">{service.title}</h3>

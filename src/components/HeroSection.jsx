@@ -4,39 +4,39 @@ import HeroModel from './HeroModel';
 
 const HeroSection = () => {
   return (
-    <section id='home' className="bg-gradient-to-r from-gray-900 via-indigo-900 to-gray-900 text-white py-20 md:py-32">
+    <section id='home' className="bg-transparent text-gray-800 py-20 md:py-32">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
         
         {/* Left Side - Text */}
         <div className="text-center md:text-left md:w-1/2 lg:mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
             Hi, I&apos;m Manoj Kumar 👋
           </h1>
-          <div className="mt-4 text-xl md:text-2xl text-gray-300">
+          <div className="mt-4 text-xl md:text-2xl text-gray-600">
             I&apos;m a{' '}
             <ReactTyped
               strings={['Full Stack Developer', 'Freelancer', 'MERN Stack Specialist']}
               typeSpeed={100}
               backSpeed={50}
               loop
-              className="text-cyan-400 font-bold"
+              className="text-green-600 font-bold"
             />
           </div>
-          <p className="mt-6 text-md text-gray-400 max-w-lg">
+          <p className="mt-6 text-md text-gray-500 max-w-lg">
             Building responsive and dynamic web applications from front-end to back-end. Let&apos;s turn your ideas into reality.
           </p>
 
           {/* Call to Action Buttons */}
-          <div className="mt-8 flex justify-center md:justify-start space-x-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
             <a
               href="#contact"
-              className="bg-cyan-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-cyan-600 transition transform hover:scale-105 shadow-lg"
+              className="bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition transform hover:scale-105 shadow-lg w-full sm:w-auto text-center"
             >
               Hire Me
             </a>
             <a
               href="#project"
-              className="border-2 border-cyan-500 text-cyan-400 px-8 py-3 rounded-full font-semibold hover:bg-cyan-500 hover:text-white transition transform hover:scale-105"
+              className="border-2 border-green-600 text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-600 hover:text-white transition transform hover:scale-105 w-full sm:w-auto text-center"
             >
               View Projects
             </a>
@@ -48,7 +48,7 @@ const HeroSection = () => {
               href="https://www.linkedin.com/in/podapati-manoj-kumar-2718a1249/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-white transition transform hover:scale-125"
+              className="text-green-600 hover:text-gray-800 transition transform hover:scale-125"
             >
               <FaLinkedin size={30} />
             </a>
@@ -56,7 +56,7 @@ const HeroSection = () => {
               href="https://github.com/manojkumar2291"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-white transition transform hover:scale-125"
+              className="text-green-600 hover:text-gray-800 transition transform hover:scale-125"
             >
               <FaGithub size={30} />
             </a>

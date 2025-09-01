@@ -31,7 +31,7 @@ const SkillsSection = () => {
       <div className="container mx-auto px-6 md:px-12">
         {/* Title */}
         <h2
-          className="text-4xl font-bold text-blue-600 text-center"
+          className="text-3xl sm:text-4xl font-bold text-green-600 text-center"
         >
           My Skills
         </h2>
@@ -50,10 +50,10 @@ const SkillsSection = () => {
               href={skill.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-4 bg-white bg-opacity-40 backdrop-blur-lg px-6 py-4 rounded-lg shadow-lg border border-slate-300 hover:border-blue-600 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer hover:drop-shadow-[0_0_8px_#3b82f6]"
+              className="flex items-center space-x-4 bg-white bg-opacity-40 backdrop-blur-lg px-4 py-3 sm:px-6 sm:py-4 rounded-lg shadow-lg border border-slate-300 hover:border-green-600 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer hover:drop-shadow-[0_0_8px_#16a34a]"
             >
-              <div className="text-5xl">{skill.icon}</div>
-              <span className="text-2xl font-semibold">{skill.name}</span>
+              <div className="text-4xl sm:text-5xl">{skill.icon}</div>
+              <span className="text-xl sm:text-2xl font-semibold">{skill.name}</span>
             </a>
           ))}
         </div>

@@ -10,13 +10,13 @@ const AboutSection = () => {
             <img
               src={manoj} // Replace with your actual image
               alt="Profile"
-              className="w-64 h-64 object-cover rounded-xl border-4 border-blue-600 shadow-lg"
+              className="w-48 h-48 sm:w-64 sm:h-64 object-cover rounded-xl border-4 border-green-600 shadow-lg"
             />
           </div>
 
           {/* Right Side - Content */}
           <div className="md:w-2/3 md:ml-10 mt-10 md:mt-0 text-center md:text-left">
-            <h2 className="text-4xl font-bold text-blue-600">About Me</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-green-600">About Me</h2>
             <p className="mt-4 text-lg text-gray-600 leading-relaxed">
               I am a passionate developer who loves building modern web applications and exploring new technologies. 
               My journey in the world of programming started with a curiosity to create interactive digital experiences, 
@@ -32,7 +32,7 @@ const AboutSection = () => {
               <a
                 href="https://drive.google.com/uc?export=download&id=1RxORCAF8-daZ8EqyWA0meDD2SZdHZHaO"
                 download
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition"
               >
                 Download Resume
               </a>
