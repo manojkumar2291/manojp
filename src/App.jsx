@@ -9,7 +9,6 @@ import FreelanceSection from './components/FreelanceSection';
 import Footer from './components/Footer';
 import ContactSection from './components/ContactSection';
 import ServicesSection from "./components/ServicesSection";
-import SectionDivider from './components/SectionDivider';
 import ProjectDetails from './pages/ProjectDetails';  // Import the ProjectDetails page
 
 const App = () => {
@@ -18,28 +17,21 @@ const App = () => {
       <Routes>
         {/* Route for the main page */}
         <Route path="/" element={
-          <div className="bg-gray-900">
+          <div className="bg-slate-200">
             <Navbar />
             <div className="px-8">
               <HeroSection />
-              <SectionDivider section="hero" />
 
               <AboutSection />
-              <SectionDivider section="about" />
 
               <SkillsSection />
-              <SectionDivider section="skills" />
               <ServicesSection />
-              <SectionDivider section='services'/>
 
               <ProjectSection />
-              <SectionDivider section="projects" />
 
               <FreelanceSection />
-              <SectionDivider section="freelance" />
 
               <ContactSection />
-              <SectionDivider section="contact" />
 
               <Footer />
             </div>

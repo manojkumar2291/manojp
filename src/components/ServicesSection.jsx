@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FaLaptopCode, FaPaintBrush, FaPalette } from "react-icons/fa";
 
 const services = [
@@ -25,55 +24,39 @@ const services = [
 const ServicesSection = () => {
   return (
    <div className="my-5" id="services">
-     <motion.section
+     <section
       
-      className="py-16 bg-gray-900 text-white"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      className="py-16 bg-transparent text-gray-800"
     >
       <div className="container mx-auto px-6 md:px-12">
         {/* Title */}
-        <motion.h2
-          className="text-4xl font-bold text-yellow-400 text-center"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+        <h2
+          className="text-4xl font-bold text-blue-600 text-center"
         >
           My Services
-        </motion.h2>
+        </h2>
 
-        <motion.p
-          className="mt-4 text-lg text-gray-300 text-center"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
+        <p
+          className="mt-4 text-lg text-gray-600 text-center"
         >
           Here are the services I provide to help bring your digital ideas to life.
-        </motion.p>
+        </p>
 
         {/* Services Grid */}
         <div className="my-15 grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={index}
-              className="bg-gray-800 bg-opacity-40 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-gray-700 hover:border-yellow-500 transition-all duration-300 transform hover:scale-105 flex flex-col items-center text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              className="bg-white bg-opacity-40 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-slate-300 hover:border-blue-600 transition-all duration-300 transform hover:scale-105 flex flex-col items-center text-center"
             >
               <div className="mb-4">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-white">{service.title}</h3>
-              <p className="text-gray-300 mt-2">{service.description}</p>
-            </motion.div>
+              <h3 className="text-xl font-semibold text-gray-800">{service.title}</h3>
+              <p className="text-gray-600 mt-2">{service.description}</p>
+            </div>
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
    </div>
   );
 };
