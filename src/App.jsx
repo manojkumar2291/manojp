@@ -17,7 +17,7 @@ const App = () => {
       <Routes>
         {/* Route for the main page */}
         <Route path="/" element={
-          <div className="bg-slate-200">
+          <div className="bg-stone-100">
             <Navbar />
             <div className="px-8">
               <HeroSection />

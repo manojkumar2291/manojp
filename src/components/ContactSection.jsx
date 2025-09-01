@@ -51,7 +51,7 @@ const ContactSection = () => {
   return (
     <section className="bg-transparent py-16 px-6 md:px-12" id="contact">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-blue-600 mb-4">Contact Me</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold text-green-600 mb-4">Contact Me</h2>
         <p className="text-gray-600 mb-8">
           Have a project in mind or just want to say hi? Feel free to reach out.
         </p>
@@ -68,7 +68,7 @@ const ContactSection = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
               placeholder="Your Name"
               required
             />
@@ -84,7 +84,7 @@ const ContactSection = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
               placeholder="Your Email"
               required
             />
@@ -99,7 +99,7 @@ const ContactSection = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              className="w-full p-4 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
               placeholder="Your Message"
               rows="5"
               required
@@ -108,7 +108,7 @@ const ContactSection = () => {
 
           <button
             type="submit"
-            className={`w-full py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-300 transform hover:scale-105 ${
+            className={`w-full py-3 text-white bg-green-600 hover:bg-green-700 rounded-md transition duration-300 transform hover:scale-105 ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isSubmitting}

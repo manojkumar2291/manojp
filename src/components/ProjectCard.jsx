@@ -8,7 +8,7 @@ const ProjectCard = ({ name, description, techStack, source_code_link, live_demo
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-slate-300 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex flex-col h-full"
+      className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-slate-300 shadow-lg hover:shadow-green-500/20 transition-all duration-300 flex flex-col h-full"
     >
       {/* Project Image */}
       <div className="relative w-full h-56">
@@ -25,7 +25,7 @@ const ProjectCard = ({ name, description, techStack, source_code_link, live_demo
         <p className="text-gray-600 text-sm mb-4 flex-grow">{description}</p>
         <div className="flex flex-wrap gap-2 mt-auto">
           {techStack?.map((tech, i) => (
-            <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-400/20 text-blue-800">
+            <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-green-400/20 text-green-800">
               {tech}
             </span>
           ))}
@@ -39,7 +39,7 @@ const ProjectCard = ({ name, description, techStack, source_code_link, live_demo
             href={source_code_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-all"
+            className="text-gray-600 hover:text-green-600 transition-all"
             title="Source Code"
           >
             <FaGithub className="text-2xl" />
@@ -50,7 +50,7 @@ const ProjectCard = ({ name, description, techStack, source_code_link, live_demo
             href={live_demo_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-all"
+            className="text-gray-600 hover:text-green-600 transition-all"
             title="Live Demo"
           >
             <FaExternalLinkAlt className="text-2xl" />
