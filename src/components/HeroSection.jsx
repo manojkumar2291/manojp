@@ -5,7 +5,7 @@ import HeroModel from './HeroModel';
 const HeroSection = () => {
   return (
     <section id='home' className="bg-gradient-to-r from-gray-900 via-indigo-900 to-gray-900 text-white py-20 md:py-32">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between ">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
         
         {/* Left Side - Text */}
         <div className="text-center md:text-left md:w-1/2 lg:mx-auto">
