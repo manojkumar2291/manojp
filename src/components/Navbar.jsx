@@ -1,66 +1,104 @@
-import { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
-
-const Navbar = () => {
+﻿import { useEffect, useRef, useState } from "react";
+import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
+const navLinks = [
+  ["home", "Home"],
+  ["about", "About"],
+  ["skills", "Skills"],
+  ["experience", "Experience"],
+  ["project", "Projects"],
+  ["ai-focus", "AI Focus"],
+  ["contact", "Contact"],
+];
+export default function Navbar() {
+  const { pathname } = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-
-  const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#services', label: 'Services' },
-    { href: '#project', label: 'Projects' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
+  const [active, setActive] = useState("home");
+  const toggle = useRef(null);
+  const header = useRef(null);
+  useEffect(() => {
+    const update = () => {
+      const current = navLinks
+        .filter(
+          ([id]) =>
+            (document.getElementById(id)?.getBoundingClientRect().top ??
+              Infinity) <= 160,
+        )
+        .at(-1);
+      if (current) setActive(current[0]);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+  useEffect(() => {
+    if (!isOpen) return;
+    const close = (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    const outside = (event) => {
+      if (!header.current?.contains(event.target)) setIsOpen(false);
+    };
+    document.addEventListener("keydown", close);
+    document.addEventListener("pointerdown", outside);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("pointerdown", outside);
+    };
+  }, [isOpen]);
   return (
-    <header className="fixed w-full z-50 bg-slate-100/50 backdrop-blur-md border-b border-slate-300">
-      <div className="container mx-auto flex justify-between items-center p-4 text-gray-800">
-        {/* Logo */}
-        <div className="text-xl font-semibold">
-          <a href="/" className="hover:text-blue-600 transition-colors">
-            Manoj&apos;s Portfolio
-          </a>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-blue-600 transition-colors">
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      <div
-        className={`md:hidden fixed top-0 left-0 w-full h-full bg-slate-100/95 backdrop-blur-lg z-40 transition-transform transform ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <nav className="flex flex-col items-center justify-center h-full">
-          {navLinks.map((link) => (
+    <header className="site-header" ref={header}>
+      <div className="container nav-inner">
+        <a className="brand" href="/#home" aria-label="Manoj Kumar, home">
+          <span className="brand-mark">
+            m<span>.</span>
+          </span>
+          <span>
+            manoj<span className="brand-dot">.dev</span>
+          </span>
+        </a>
+        <button
+          ref={toggle}
+          type="button"
+          className="menu-toggle"
+          aria-expanded={isOpen}
+          aria-controls="main-nav"
+          aria-label={isOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <FiX /> : <FiMenu />}
+        </button>
+        <nav
+          id="main-nav"
+          aria-label="Main navigation"
+          className={isOpen ? "nav-links is-open" : "nav-links"}
+        >
+          {navLinks.map(([id, label]) => (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-2xl py-4 hover:text-blue-600 transition-colors"
+              key={id}
+              href={"/#" + id}
+              aria-current={
+                (
+                  pathname.startsWith("/project/")
+                    ? id === "project"
+                    : active === id
+                )
+                  ? "location"
+                  : undefined
+              }
               onClick={() => setIsOpen(false)}
             >
-              {link.label}
+              {label}
             </a>
           ))}
         </nav>
+        <a className="nav-contact" href="/#contact">
+          Let&apos;s talk <FiArrowUpRight aria-hidden="true" />
+        </a>
       </div>
     </header>
   );
-};
-
-export default Navbar;
+}

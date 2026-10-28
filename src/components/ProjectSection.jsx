@@ -1,28 +1,79 @@
+﻿import { useState } from "react";
 import ProjectCard from "./ProjectCard";
-import { personalProjects } from "../projectsData";
-
-const ProjectSection = () => {
+import {
+  publishedProjects,
+  featuredProjects,
+  getProjectFilters,
+} from "../projectsData";
+import SectionHeading from "./SectionHeading";
+export default function ProjectSection() {
+  const [filter, setFilter] = useState("All");
+  const [view, setView] = useState("featured");
+  const catalog = view === "featured" ? featuredProjects : publishedProjects;
+  const filters = getProjectFilters(catalog);
+  const filtered = catalog.filter(
+    (project) => filter === "All" || project.categories.includes(filter),
+  );
   return (
-    <section className="projects-section p-12 md:p-16 bg-transparent text-gray-800" id="project">
-      <h2 className="text-4xl font-bold text-center mb-12 text-blue-600">My Personal Projects</h2>
-
-      <div className="flex flex-wrap justify-center gap-8">
-        {personalProjects.map((project, index) => (
-          <div key={project.id} className="w-full sm:w-1/2 lg:w-[30%]">
-            <ProjectCard
-              index={index}
-              name={project.name}
-              description={project.description}
-              techStack={project.techStack}
-              source_code_link={project.source_code_link}
-              live_demo_link={project.live_demo_link}
-              imageUrl={project.image}
-            />
-          </div>
+    <section id="project" className="section container">
+      <SectionHeading
+        number="04"
+        eyebrow="SELECTED WORK"
+        title="From complex problems to useful products."
+        description="Hands-on AI and RAG projects alongside healthcare platforms and full-stack applications. Explore the featured work or browse the complete collection."
+      />
+      {/* <div
+        className="project-view-switch"
+        role="group"
+        aria-label="Project collection"
+      >
+        <button
+          type="button"
+          aria-pressed={view === "featured"}
+          onClick={() => {
+            setView("featured");
+            setFilter("All");
+          }}
+        >
+          Featured projects <span>{featuredProjects.length}</span>
+        </button>
+        <button
+          type="button"
+          aria-pressed={view === "all"}
+          onClick={() => {
+            setView("all");
+            setFilter("All");
+          }}
+        >
+          All projects <span>{publishedProjects.length}</span>
+        </button>
+      </div> */}
+      <div className="project-toolbar">
+        <div className="filters" role="group" aria-label="Filter projects">
+          {filters.map((item) => (
+            <button
+              key={item}
+              type="button"
+              aria-pressed={item === filter}
+              onClick={() => setFilter(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        <span className="project-count" role="status">
+          {String(filtered.length).padStart(2, "0")} projects
+        </span>
+      </div>
+      <div className="projects-grid">
+        {filtered.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={publishedProjects.indexOf(project)}
+          />
         ))}
       </div>
     </section>
   );
-};
-
-export default ProjectSection;
+}

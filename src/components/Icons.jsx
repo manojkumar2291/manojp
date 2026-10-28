@@ -1,0 +1,28 @@
+﻿import {
+  FiCode,
+  FiLayers,
+  FiServer,
+  FiDatabase,
+  FiTool,
+  FiCpu,
+  FiGitBranch,
+  FiSearch,
+  FiMic,
+  FiHeart,
+  FiUsers,
+  FiShield,
+} from "react-icons/fi";
+export const icons = {
+  code: FiCode,
+  frontend: FiLayers,
+  backend: FiServer,
+  database: FiDatabase,
+  tools: FiTool,
+  ai: FiCpu,
+  workflow: FiGitBranch,
+  search: FiSearch,
+  voice: FiMic,
+  health: FiHeart,
+  crm: FiUsers,
+  leads: FiShield,
+};

@@ -1,57 +1,145 @@
-// src/pages/ProjectDetails.jsx
-import { useParams } from 'react-router-dom';
-import {personalProjects } from '../projectsData';  // Import the projects array
+﻿import { useEffect } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { FiArrowLeft, FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { publishedProjects } from "../projectsData";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { icons } from "../components/Icons";
 
-const ProjectDetails = () => {
-  const { id } = useParams();  // Get the project ID from the URL
-  const project = personalProjects.find((project) => project.id === id);  // Find the project using the id
-
-  if (!project) {
-    return <p className="text-white">Project not found!</p>;  // Handle case when project is not found
-  }
-
+export default function ProjectDetails() {
+  const { id } = useParams();
+  const location = useLocation();
+  const project = publishedProjects.find((item) => item.id === id);
+  const Icon = icons[project?.icon] || icons.code;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = project
+      ? project.name + " | Manoj Kumar"
+      : "Page not found | Manoj Kumar";
+    return () => {
+      document.title = "Manoj Kumar | AI / GenAI & Full-Stack Developer";
+    };
+  }, [project, location.pathname]);
   return (
-    <div className="p-8 bg-gradient-to-r from-blue-800 via-blue-900 to-blue-950 min-h-screen text-white">
-      <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-xl shadow-lg">
-        <h2 className="text-4xl font-semibold text-center text-gold-500">{project.title}</h2>
-        <div className="mt-6">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-72 object-cover rounded-lg shadow-md"
-          />
-        </div>
-        <h3 className="text-xl text-gray-300 mt-4">{project.description}</h3>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.techStack?.map((tech, index) => (
-            <span key={index} className="px-4 py-2 text-xs font-semibold rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black">
-              #{tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-6 flex justify-center gap-6">
-          <a 
-            href={project.githubLink} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-yellow-400 text-xl"
-          >
-            GitHub
-          </a>
-          <a 
-            href={project.liveLink} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:text-yellow-400 text-xl"
-          >
-            Live Demo
-          </a>
-        </div>
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <main id="main-content" className="container detail-page">
+        <Link to="/#project" className="text-link">
+          <FiArrowLeft aria-hidden="true" /> Back to projects
+        </Link>
+        {project ? (
+          <article>
+            <p className="eyebrow">{project.category}</p>
+            {project.status && (
+              <p className="detail-status">{project.status}</p>
+            )}
+            <h1>{project.name}</h1>
+            {project.subtitle && <p className="lead">{project.subtitle}</p>}
+            <p className="detail-description">{project.description}</p>
+            {project.image ? (
+              <img
+                className="detail-image"
+                src={project.image}
+                alt={project.name + " application screenshot"}
+                width="1000"
+                height="560"
+              />
+            ) : (
+              <div className={"detail-art art-" + project.icon}>
+                <Icon aria-hidden="true" />
+                <span>{project.subtitle || project.name}</span>
+              </div>
+            )}
+            <div className="detail-columns">
+              <div>
+                <h2>Project highlights</h2>
+                <ul className="detail-highlights">
+                  {project.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h2>Technology stack</h2>
+                <ul className="tags">
+                  {project.techStack.map((tech) => (
+                    <li key={tech}>{tech}</li>
+                  ))}
+                </ul>
+                <div className="detail-actions">
+                  {project.source_code_link && (
+                    <a
+                      className="button button-secondary"
+                      href={project.source_code_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FiGithub aria-hidden="true" /> GitHub
+                    </a>
+                  )}
+                  {project.live_demo_link && (
+                    <a
+                      className="button button-primary"
+                      href={project.live_demo_link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Live Demo <FiArrowUpRight aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+            {project.workflow?.length > 0 && (
+              <section
+                className="case-study-section"
+                aria-labelledby="workflow-heading"
+              >
+                <h2 id="workflow-heading">How it works</h2>
+                <ol className="project-workflow">
+                  {project.workflow.map((step, index) => (
+                    <li key={step.title}>
+                      <span className="workflow-number" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3>{step.title}</h3>
+                        <p>{step.description}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+            {project.details?.map((section) => (
+              <section className="case-study-section" key={section.title}>
+                <h2>{section.title}</h2>
+                {section.description && <p>{section.description}</p>}
+                {section.items?.length > 0 && (
+                  <ul className="detail-highlights">
+                    {section.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </article>
+        ) : (
+          <div className="not-found">
+            <p className="eyebrow">404</p>
+            <h1>{id ? "Project not found." : "Page not found."}</h1>
+            <p>
+              This page is unavailable. Explore the selected work on the
+              portfolio.
+            </p>
+            <Link className="button button-primary" to="/#project">
+              Explore projects <FiArrowUpRight aria-hidden="true" />
+            </Link>
+          </div>
+        )}
+      </main>
+      <Footer />
+    </>
   );
-};
-
-export default ProjectDetails;
+}

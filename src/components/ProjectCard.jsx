@@ -1,78 +1,116 @@
-import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import PropTypes from 'prop-types';
+﻿import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
+import { icons } from "./Icons";
 
-const ProjectCard = ({ name, description, techStack, source_code_link, live_demo_link, imageUrl }) => {
+export default function ProjectCard({ project, index = 0 }) {
+  const Icon = icons[project.icon] || icons.code;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="rounded-2xl overflow-hidden bg-white/50 backdrop-blur-sm border border-slate-300 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 flex flex-col h-full"
+    <motion.article
+      className="project-card panel"
+      initial={false}
+      whileInView={{ y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
-      {/* Project Image */}
-      <div className="relative w-full h-56">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Description & Tech Stack */}
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{name}</h3>
-        <p className="text-gray-600 text-sm mb-4 flex-grow">{description}</p>
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {techStack?.map((tech, i) => (
-            <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-400/20 text-blue-800">
-              {tech}
+      <div className={"project-art art-" + (project.icon || "screenshot")}>
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.name + " application screenshot"}
+            loading="lazy"
+            decoding="async"
+            width="640"
+            height="360"
+          />
+        ) : (
+          <>
+            <div className="art-lines" aria-hidden="true" />
+            <Icon className="project-art-icon" aria-hidden="true" />
+            <span className="art-caption">
+              {project.artCaption ||
+                (project.icon === "voice"
+                  ? "VOICE → INTERACTION"
+                  : project.icon === "ai"
+                    ? "CONVERSATION → CARE"
+                    : "SOFTWARE → SOLUTIONS")}
             </span>
+          </>
+        )}
+        <span className="project-number">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        {project.status && (
+          <span className="project-status">{project.status}</span>
+        )}
+      </div>
+      <div className="project-content">
+        <p className="eyebrow project-category">{project.category}</p>
+        <h3>
+          <Link to={"/project/" + project.id}>
+            {project.name} <FiArrowUpRight aria-hidden="true" />
+          </Link>
+        </h3>
+        {project.subtitle && (
+          <p className="project-subtitle">{project.subtitle}</p>
+        )}
+        <p className="project-description">{project.description}</p>
+        <ul className="project-highlights">
+          {project.highlights.map((item) => (
+            <li key={item}>{item}</li>
           ))}
+        </ul>
+        <ul className="tags">
+          {project.techStack.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+        <div className="project-actions">
+          <Link to={"/project/" + project.id} className="text-link">
+            Project details <FiArrowUpRight aria-hidden="true" />
+          </Link>
+          <div>
+            {project.source_code_link && (
+              <a
+                href={project.source_code_link}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={"GitHub source for " + project.name}
+              >
+                <FiGithub aria-hidden="true" /> GitHub
+              </a>
+            )}
+            {project.live_demo_link && (
+              <a
+                href={project.live_demo_link}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={"Live demo of " + project.name}
+              >
+                Live Demo <FiArrowUpRight aria-hidden="true" />
+              </a>
+            )}
+          </div>
         </div>
       </div>
-
-      {/* Action Buttons */}
-      <div className="p-6 bg-slate-100/50 flex justify-end gap-4">
-        {source_code_link && (
-          <a
-            href={source_code_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-all"
-            title="Source Code"
-          >
-            <FaGithub className="text-2xl" />
-          </a>
-        )}
-        {live_demo_link && (
-          <a
-            href={live_demo_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-blue-600 transition-all"
-            title="Live Demo"
-          >
-            <FaExternalLinkAlt className="text-2xl" />
-          </a>
-        )}
-      </div>
-    </motion.div>
+    </motion.article>
   );
-};
-
+}
 ProjectCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  techStack: PropTypes.arrayOf(PropTypes.string).isRequired,
-  source_code_link: PropTypes.string,
-  live_demo_link: PropTypes.string,
-  imageUrl: PropTypes.string.isRequired,
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    category: PropTypes.string,
+    icon: PropTypes.string,
+    image: PropTypes.string,
+    status: PropTypes.string,
+    artCaption: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    highlights: PropTypes.arrayOf(PropTypes.string).isRequired,
+    techStack: PropTypes.arrayOf(PropTypes.string).isRequired,
+    source_code_link: PropTypes.string,
+    live_demo_link: PropTypes.string,
+  }).isRequired,
+  index: PropTypes.number,
 };
-
-ProjectCard.defaultProps = {
-  source_code_link: '',
-  live_demo_link: '',
-};
-
-export default ProjectCard;

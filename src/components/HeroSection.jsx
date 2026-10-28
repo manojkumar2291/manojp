@@ -1,75 +1,221 @@
-import { ReactTyped } from 'react-typed';
-import { FaLinkedin, FaGithub } from "react-icons/fa6";
-import HeroModel from './HeroModel';
+﻿import { Component, lazy, Suspense, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { ReactTyped } from "react-typed";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiDownload,
+  FiGithub,
+  FiMail,
+  FiCpu,
+} from "react-icons/fi";
+import { FaReact, FaNodeJs, FaPython } from "react-icons/fa";
+import { SiFastapi, SiMysql } from "react-icons/si";
+import { heroTitles, profile } from "../portfolioData";
+const HeroModel = lazy(() => import("./HeroModel"));
 
-const HeroSection = () => {
+class VisualBoundary extends Component {
+  state = { failed: false };
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+  render() {
+    return this.state.failed ? (
+      <span className="visual-fallback">
+        3D preview unavailable on this device
+      </span>
+    ) : (
+      this.props.children
+    );
+  }
+}
+VisualBoundary.propTypes = { children: PropTypes.node };
+
+export default function HeroSection() {
+  const reduceMotion = useReducedMotion();
+  const [canRender, setCanRender] = useState(false);
+  const [showModel, setShowModel] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+    );
+    const update = () =>
+      setCanRender(query.matches && !navigator.connection?.saveData);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
   return (
-    <section id='home' className="bg-gradient-to-r from-gray-900 via-indigo-900 to-gray-900 text-white py-20 md:py-32">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
-        
-        {/* Left Side - Text */}
-        <div className="text-center md:text-left md:w-1/2 lg:mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            Hi, I&apos;m Manoj Kumar 👋
-          </h1>
-          <div className="mt-4 text-xl md:text-2xl text-gray-300">
-            I&apos;m a{' '}
-            <ReactTyped
-              strings={['Full Stack Developer', 'Freelancer', 'MERN Stack Specialist']}
-              typeSpeed={100}
-              backSpeed={50}
-              loop
-              className="text-cyan-400 font-bold"
-            />
-          </div>
-          <p className="mt-6 text-md text-gray-400 max-w-lg">
-            Building responsive and dynamic web applications from front-end to back-end. Let&apos;s turn your ideas into reality.
-          </p>
-
-          {/* Call to Action Buttons */}
-          <div className="mt-8 flex justify-center md:justify-start space-x-4">
-            <a
-              href="#contact"
-              className="bg-cyan-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-cyan-600 transition transform hover:scale-105 shadow-lg"
-            >
-              Hire Me
-            </a>
-            <a
-              href="#project"
-              className="border-2 border-cyan-500 text-cyan-400 px-8 py-3 rounded-full font-semibold hover:bg-cyan-500 hover:text-white transition transform hover:scale-105"
-            >
-              View Projects
-            </a>
-          </div>
-
-          {/* Social Media Icons */}
-          <div className="mt-8 flex justify-center md:justify-start space-x-6">
-            <a
-              href="https://www.linkedin.com/in/podapati-manoj-kumar-2718a1249/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-white transition transform hover:scale-125"
-            >
-              <FaLinkedin size={30} />
-            </a>
-            <a
-              href="https://github.com/manojkumar2291"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-white transition transform hover:scale-125"
-            >
-              <FaGithub size={30} />
-            </a>
+    <section id="home" className="hero">
+      <div className="container">
+        <div className="hero-grid">
+          <motion.div
+            className="hero-copy"
+            initial={false}
+            animate={{ y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.5 }}
+          >
+            <p className="eyebrow hero-eyebrow">
+              <span className="status-dot" /> AI / GENAI ENGINEER · FULL-STACK
+              DEVELOPER
+            </p>
+            <p className="hero-greeting">Hi, I&apos;m Manoj Kumar.</p>
+            <h1>
+              Building Intelligent
+              <br />
+              <span className="gradient-text">AI Applications</span>
+              <br />
+              &amp; Scalable Full-Stack Solutions
+              <span className="accent">.</span>
+            </h1>
+            <div className="hero-role">
+              <span aria-hidden="true">&gt;_</span>
+              <span className="sr-only">{heroTitles.join(", ")}</span>
+              <span aria-hidden="true">
+                {reduceMotion ? (
+                  heroTitles[0]
+                ) : (
+                  <ReactTyped
+                    strings={heroTitles}
+                    typeSpeed={42}
+                    backSpeed={22}
+                    backDelay={2200}
+                    loop
+                  />
+                )}
+              </span>
+            </div>
+            <p className="hero-intro">
+              Hi, I&apos;m Manoj Kumar, a software developer passionate about
+              building intelligent applications and scalable web platforms. I
+              work with React.js, Node.js, Python, FastAPI, and MySQL, and
+              I&apos;m expanding my expertise in Generative AI, LLMs,
+              Retrieval-Augmented Generation, and AI agent workflows. I enjoy
+              transforming complex problems into reliable, user-friendly
+              solutions.
+            </p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#project">
+                View My Projects <FiArrowUpRight aria-hidden="true" />
+              </a>
+              {profile.resume ? (
+                <a
+                  className="button button-secondary"
+                  href={profile.resume}
+                  download="Manoj-Kumar-Resume.pdf"
+                >
+                  Download Resume <FiDownload aria-hidden="true" />
+                </a>
+              ) : (
+                <button
+                  className="button button-secondary"
+                  disabled
+                  title="A verified resume file has not been added"
+                >
+                  Resume · coming soon <FiDownload aria-hidden="true" />
+                </button>
+              )}
+            </div>
+            <div className="hero-socials">
+              <a href="#contact">
+                <FiMail aria-hidden="true" /> Contact Me
+              </a>
+              <span aria-hidden="true" />
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                <FiGithub aria-hidden="true" /> GitHub Profile{" "}
+                <FiArrowUpRight aria-hidden="true" />
+              </a>
+            </div>
+          </motion.div>
+          <div className="hero-visual">
+            <div className="visual-grid" aria-hidden="true" />
+            <div className="orbit orbit-one" aria-hidden="true" />
+            <div className="orbit orbit-two" aria-hidden="true" />
+            <div className="visual-topline">
+              <span>IDEAS → INTELLIGENT SYSTEMS</span>
+              <FiCpu aria-hidden="true" />
+            </div>
+            <div className="orb-space" aria-hidden="true">
+              {canRender && showModel ? (
+                <VisualBoundary>
+                  <Suspense fallback={<div className="orb-static" />}>
+                    <HeroModel />
+                  </Suspense>
+                </VisualBoundary>
+              ) : (
+                <div className="orb-static">
+                  <div />
+                  <div />
+                  <div />
+                  <span>m.</span>
+                </div>
+              )}
+            </div>
+            <div className="visual-label label-ai">
+              <span className="status-dot" /> AI + HUMAN INTENT
+            </div>
+            <div className="visual-label label-code">
+              <span>&lt;/&gt;</span> BUILT TO SOLVE
+            </div>
+            <div className="code-note">
+              <div className="code-note-title">
+                <span />
+                <span />
+                <span />
+                <small>my-approach.js</small>
+              </div>
+              <code>
+                <span className="code-purple">const</span> approach = {"{"}
+                <br />
+                &nbsp; understand:{" "}
+                <span className="code-cyan">&apos;the problem&apos;</span>,
+                <br />
+                &nbsp; build:{" "}
+                <span className="code-cyan">&apos;with purpose&apos;</span>,
+                <br />
+                &nbsp; improve: <span className="code-purple">true</span>
+                <br />
+                {"}"};
+              </code>
+            </div>
+            {canRender && (
+              <button
+                className="visual-toggle"
+                type="button"
+                onClick={() => setShowModel(!showModel)}
+                aria-pressed={showModel}
+              >
+                {showModel ? "Pause 3D visual" : "Explore in 3D"}{" "}
+                <FiArrowUpRight aria-hidden="true" />
+              </button>
+            )}
           </div>
         </div>
-
-        {/* Right Side - 3D Model */}
-        <div className="mt-12 md:mt-0 md:w-1/2 h-96">
-          <HeroModel />
+        <div className="hero-bottom">
+          <a className="scroll-cue" href="#about">
+            <FiArrowDown aria-hidden="true" /> SCROLL TO EXPLORE
+          </a>
+          <div className="stack-strip" aria-label="Core technologies">
+            <span>CORE STACK</span>
+            <span>
+              <FaReact /> React
+            </span>
+            <span>
+              <FaNodeJs /> Node.js
+            </span>
+            <span>
+              <FaPython /> Python
+            </span>
+            <span>
+              <SiFastapi /> FastAPI
+            </span>
+            <span>
+              <SiMysql /> MySQL
+            </span>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

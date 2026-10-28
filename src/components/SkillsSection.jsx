@@ -1,65 +1,49 @@
-import { FaReact, FaNodeJs, FaJava, FaDatabase, FaHtml5, FaGitAlt } from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiFirebase, SiFastapi, SiNextdotjs, SiJavascript, SiExpress, SiVercel, SiFlask } from "react-icons/si";
-
-// Skill list with names, icons, and links
-const skills = [
-  { name: "React.js", icon: <FaReact className="text-blue-400" />, link: "https://react.dev/" },
-  { name: "Next.js", icon: <SiNextdotjs className="text-gray-800" />, link: "https://nextjs.org/docs" },
-  { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" />, link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-blue-300" />, link: "https://tailwindcss.com/docs" },
-  { name: "HTML & CSS", icon: <FaHtml5 className="text-orange-500" />, link: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-500" />, link: "https://nodejs.org/en/docs" },
-  { name: "Express.js", icon: <SiExpress className="text-gray-800" />, link: "https://expressjs.com/" },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-400" />, link: "https://www.mongodb.com/docs/" },
-  { name: "FastAPI", icon: <SiFastapi className="text-blue-500" />, link: "https://fastapi.tiangolo.com/" },
-  { name: "Java", icon: <FaJava className="text-red-500" />, link: "https://docs.oracle.com/en/java/" },
-  { name: "Flask", icon: <SiFlask className="text-yellow-300" />, link: "https://flask.palletsprojects.com/en/2.3.x/" },
-  { name: "SQL", icon: <FaDatabase className="text-gray-400" />, link: "https://www.w3schools.com/sql/" },
-  { name: "RESTful APIs", icon: <FaDatabase className="text-gray-300" />, link: "https://www.restapitutorial.com/" },
-  { name: "Firebase", icon: <SiFirebase className="text-yellow-500" />, link: "https://firebase.google.com/docs" },
-  { name: "Git & GitHub", icon: <FaGitAlt className="text-orange-500" />, link: "https://git-scm.com/doc" },
-  { name: "Vercel & Render", icon: <SiVercel className="text-gray-800" />, link: "https://vercel.com/docs" },
-  
-];
-
-const SkillsSection = () => {
+﻿import { skillGroups } from "../portfolioData";
+import { icons } from "./Icons";
+import SectionHeading from "./SectionHeading";
+export default function SkillsSection() {
   return (
-    <section
-      id="skills"
-      className="py-16 bg-transparent text-gray-800"
-    >
-      <div className="container mx-auto px-6 md:px-12">
-        {/* Title */}
-        <h2
-          className="text-4xl font-bold text-blue-600 text-center"
-        >
-          My Skills
-        </h2>
-
-        <p
-          className="mt-4 text-lg text-gray-600 mb-8 text-center"
-        >
-          Technologies & tools I have experience with:
-        </p>
-
-        {/* Skills Grid (2 Columns) */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {skills.map((skill) => (
-            <a
-              key={skill.name}
-              href={skill.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-4 bg-white bg-opacity-40 backdrop-blur-lg px-6 py-4 rounded-lg shadow-lg border border-slate-300 hover:border-blue-600 transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer hover:drop-shadow-[0_0_8px_#3b82f6]"
+    <section id="skills" className="section container">
+      <SectionHeading
+        number="02"
+        eyebrow="THE TOOLKIT"
+        title="Built with purpose."
+        description="A practical engineering toolkit, with a growing focus on intelligent applications."
+      />
+      <div className="skills-grid">
+        {skillGroups.map((group) => {
+          const Icon = icons[group.icon];
+          return (
+            <article
+              className={
+                "skill-group panel " + (group.learning ? "learning-group" : "")
+              }
+              key={group.name}
             >
-              <div className="text-5xl">{skill.icon}</div>
-              <span className="text-2xl font-semibold">{skill.name}</span>
-            </a>
-          ))}
-        </div>
+              <div className="card-heading">
+                <Icon aria-hidden="true" />
+                <h3>{group.name}</h3>
+              </div>
+              <p className="skill-status">
+                {group.label ||
+                  (group.learning
+                    ? "LEARNING / FOCUS AREAS"
+                    : "ENGINEERING TOOLKIT")}
+              </p>
+              <ul className="tags">
+                {group.skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </article>
+          );
+        })}
       </div>
+      <p className="section-note">
+        Project cards show the technologies used in each application. Hands-on
+        AI experience comes from the documented projects; continued learning is
+        labeled separately and does not imply production expertise.
+      </p>
     </section>
   );
-};
-
-export default SkillsSection;
+}
